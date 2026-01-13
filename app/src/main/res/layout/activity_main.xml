@@ -26,18 +26,20 @@
         android:background="#E0E0E0"
         android:layout_marginBottom="24dp"/>
 
-    <!-- Button to open Mock Device menu -->
+    <!-- Button to pair mock device -->
     <Button
         android:id="@+id/mockDeviceButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Pair Mock Device"
+        android:text="1. Pair Mock Device"
         android:layout_marginBottom="16dp"/>
-    <!-- Button to connect -->
+
+    <!-- Button to check devices -->
     <Button
-        android:id="@+id/connectButton"
+        android:id="@+id/streamButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Connect to Glasses"/>
+        android:text="2. Check Devices"
+        android:enabled="false"/>
 
 </LinearLayout>

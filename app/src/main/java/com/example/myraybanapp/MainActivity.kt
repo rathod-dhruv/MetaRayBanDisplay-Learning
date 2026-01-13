@@ -2,8 +2,11 @@ package com.example.myraybanapp
 
 import android.os.Bundle
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
+import kotlinx.coroutines.launch
 
 // Correct imports
 import com.meta.wearable.dat.core.Wearables
@@ -14,9 +17,8 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var statusText: TextView
     private lateinit var mockDeviceButton: Button
-    private lateinit var connectButton: Button
+    private lateinit var streamButton: Button
 
-    // MockDeviceKit instance
     private lateinit var mockDeviceKit: MockDeviceKitInterface
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,32 +28,47 @@ class MainActivity : AppCompatActivity() {
         // Find the views
         statusText = findViewById(R.id.statusText)
         mockDeviceButton = findViewById(R.id.mockDeviceButton)
-        connectButton = findViewById(R.id.connectButton)
+        streamButton = findViewById(R.id.streamButton)
 
         // Step 1: Initialize the SDK
         Wearables.initialize(this)
         statusText.text = "Status: SDK Initialized ✓"
 
-        // Step 2: Get MockDeviceKit instance (CORRECT WAY)
+        // Step 2: Get MockDeviceKit instance
         mockDeviceKit = MockDeviceKit.getInstance(this)
 
         // Button to pair a mock device
         mockDeviceButton.setOnClickListener {
-            // Pair a simulated Ray-Ban Meta glasses
             val mockDevice = mockDeviceKit.pairRaybanMeta()
-            statusText.text = "Status: Mock device paired!"
+            statusText.text = "Status: Mock device paired! ✓"
+
+            // Enable stream button after pairing
+            streamButton.isEnabled = true
         }
 
-        // Button to start registration
-        connectButton.setOnClickListener {
-            statusText.text = "Status: Starting registration..."
-            Wearables.startRegistration(this)
+        // Button to observe devices (instead of registration)
+        streamButton.isEnabled = false
+        streamButton.setOnClickListener {
+            observeDevices()
+        }
+    }
+
+    private fun observeDevices() {
+        lifecycleScope.launch {
+            Wearables.devices.collect { devices ->
+                runOnUiThread {
+                    if (devices.isNotEmpty()) {
+                        statusText.text = "Status: Found ${devices.size} device(s)!"
+                    } else {
+                        statusText.text = "Status: No devices found"
+                    }
+                }
+            }
         }
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        // Reset mock device kit when app closes
         mockDeviceKit.reset()
     }
 }
