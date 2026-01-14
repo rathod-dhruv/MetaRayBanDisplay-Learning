@@ -3,43 +3,65 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="24dp"
+    android:padding="16dp"
     android:gravity="center_horizontal">
 
-    <!-- Title -->
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="My Ray-Ban App"
-        android:textSize="28sp"
+        android:textSize="24sp"
         android:textStyle="bold"
-        android:layout_marginBottom="32dp"/>
+        android:layout_marginBottom="12dp"/>
 
-    <!-- Status display -->
     <TextView
         android:id="@+id/statusText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Status: Not connected"
-        android:textSize="16sp"
-        android:padding="16dp"
+        android:textSize="14sp"
+        android:padding="12dp"
         android:background="#E0E0E0"
-        android:layout_marginBottom="24dp"/>
+        android:layout_marginBottom="12dp"/>
 
-    <!-- Button to pair mock device -->
     <Button
         android:id="@+id/mockDeviceButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="1. Pair Mock Device"
-        android:layout_marginBottom="16dp"/>
+        android:layout_marginBottom="8dp"/>
 
-    <!-- Button to check devices -->
     <Button
-        android:id="@+id/streamButton"
+        android:id="@+id/powerOnButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="2. Check Devices"
-        android:enabled="false"/>
+        android:text="2. Power On + Don"
+        android:enabled="false"
+        android:layout_marginBottom="8dp"/>
+
+    <!-- NEW: Select Video Button -->
+    <Button
+        android:id="@+id/selectVideoButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="3. Select Video (h265)"
+        android:enabled="false"
+        android:layout_marginBottom="8dp"/>
+
+    <Button
+        android:id="@+id/startStreamButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="4. Start Camera Stream"
+        android:enabled="false"
+        android:layout_marginBottom="12dp"/>
+
+    <ImageView
+        android:id="@+id/cameraPreview"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="#000000"
+        android:scaleType="fitCenter"/>
 
 </LinearLayout>
