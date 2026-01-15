@@ -39,7 +39,6 @@
         android:enabled="false"
         android:layout_marginBottom="8dp"/>
 
-    <!-- NEW: Select Video Button -->
     <Button
         android:id="@+id/selectVideoButton"
         android:layout_width="match_parent"
@@ -55,6 +54,26 @@
         android:text="4. Start Camera Stream"
         android:enabled="false"
         android:layout_marginBottom="12dp"/>
+
+    <Button
+        android:id="@+id/askAiButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="5. Ask AI (Voice)"
+        android:enabled="false"
+        android:layout_marginBottom="12dp"
+        android:backgroundTint="#6200EE"
+        android:textColor="#FFFFFF"/>
+
+    <TextView
+        android:id="@+id/aiResponseText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="AI: Waiting for question..."
+        android:textSize="16sp"
+        android:padding="8dp"
+        android:layout_marginBottom="8dp"
+        android:visibility="gone"/>
 
     <ImageView
         android:id="@+id/cameraPreview"
